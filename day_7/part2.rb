@@ -3,13 +3,12 @@
 input = File.read("./input.txt").split(",").map(&:to_i)
 
 results = []
-(0..input.max).each do |x|
+(input.min..input.max).each do |x|
   fuel = 0
   input.each do |crab|
     steps = (crab - x).abs
-    fuel += (1..steps).sum(0)
+    fuel += (steps*(steps+1))/2
   end
-  puts "FUEL: #{fuel.to_i}"
   results << fuel.to_i
 end
 puts "MIN: #{results.min}"
